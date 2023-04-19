@@ -2,11 +2,13 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.Cat;
 import com.example.demo.repo.CatRepo;
 
+@Primary
 @Service
 public class CatServiceDB implements CatService {
 
