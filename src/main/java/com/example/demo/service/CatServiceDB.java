@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.Cat;
+import com.example.demo.exception.CatNotFoundException;
 import com.example.demo.repo.CatRepo;
 
 @Primary
@@ -25,7 +26,7 @@ public class CatServiceDB implements CatService {
 
 	@Override
 	public Cat get(int id) {
-		return this.repo.findById((long) id).get();
+		return this.repo.findById((long) id).orElseThrow(() -> new CatNotFoundException());
 	}
 
 	@Override
