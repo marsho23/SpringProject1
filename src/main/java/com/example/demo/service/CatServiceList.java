@@ -29,7 +29,7 @@ public class CatServiceList implements CatService {
 
 	@Override
 	public Cat update(int id, Boolean hasWhiskers, String name, Boolean evil, Integer length) {
-		Cat c = new Cat();
+		Cat c = this.cats.get(id);
 		if (hasWhiskers != null)
 			c.setHasWhiskers(hasWhiskers);
 		if (name != null)
