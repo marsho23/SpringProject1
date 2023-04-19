@@ -1,6 +1,14 @@
 package com.example.demo.domain;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity // tells spring its a table
 public class Cat {
+	@Id
+	@GeneratedValue
+	private Long id;
 
 	public Cat() {
 	}
@@ -9,6 +17,14 @@ public class Cat {
 	String name;
 	boolean evil;
 	int length;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public boolean isHasWhiskers() {
 		return hasWhiskers;
