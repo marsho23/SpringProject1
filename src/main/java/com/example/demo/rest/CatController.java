@@ -65,7 +65,7 @@ public class CatController {
 
 	@PostMapping("/create")
 
-	public ResponseEntity<Cat> Create(@RequestBody Cat c) {
+	public ResponseEntity<Cat> create(@RequestBody Cat c) {
 		cats.add(c);
 		Cat created = cats.get(cats.size() - 1);
 		return new ResponseEntity<>(created, HttpStatus.CREATED);
