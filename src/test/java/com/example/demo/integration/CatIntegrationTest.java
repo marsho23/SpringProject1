@@ -3,6 +3,9 @@ package com.example.demo.integration;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -48,10 +51,46 @@ public class CatIntegrationTest {
 		.andExpect(checkBody);
 	}
 	
-//	@Test
-//	void testUpdate() throws Exception{
-//		Cat c= new Cat ("Chairman Meow",true,true,12);
-//		Cat created = 
-//	}
+	@Test
+	void testGetAll() throws Exception{
+		RequestBuilder req = MockMvcRequestBuilders.get("/getAll");
+		ResultMatcher checkStatus = MockMvcResultMatchers.status().isOk();
+
+		
+		List<Cat> catList = new ArrayList<Cat>();
+		catList.add(new Cat(1L,"Mr Bigglesworth",true,true,27));
+		String catListAsJson = this.mapper.writeValueAsString(catList);
+		ResultMatcher checkBody = content().json(catListAsJson);
+		this.mvc.perform(req)
+		.andExpect(checkStatus)
+		.andExpect(checkBody);
+	}
+	
+	@Test
+	void testGet() throws Exception {
+		RequestBuilder req = MockMvcRequestBuilders.get("/get/1");
+		ResultMatcher checkStatus = MockMvcResultMatchers.status().isOk();
+		
+		Cat cat = new Cat(1L,"Mr Bigglesworth",true,true,27);
+		String catAsJson = this.mapper.writeValueAsString(cat);
+		ResultMatcher checkBody = content().json(catAsJson);
+		this.mvc.perform(req)
+		.andExpect(checkStatus)
+		.andExpect(checkBody);
+	}
+	
+	@Test 
+	void testDelete() throws Exception{
+		Long id=1L;
+		RequestBuilder req = MockMvcRequestBuilders.delete("/delete/"+id);
+		ResultMatcher checkStatus = MockMvcResultMatchers.status().isOk();
+		
+		Cat cat = new Cat(1L,"Mr Bigglesworth",true,true,27);
+		String catAsJson = this.mapper.writeValueAsString(cat);
+		ResultMatcher checkBody = content().json(catAsJson);
+		this.mvc.perform(req)
+		.andExpect(checkStatus)
+		.andExpect(checkBody);
+	}
 	
 }
