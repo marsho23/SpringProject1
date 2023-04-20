@@ -12,6 +12,22 @@ public class Cat {
 
 	public Cat() {
 	}
+	
+	public Cat(String name, boolean hasWhiskers, boolean evil, int length) {
+		this.hasWhiskers = hasWhiskers;
+		this.name = name;
+		this.evil = evil;
+		this.length = length;
+	}
+	
+
+	public Cat(Long id, String name, boolean hasWhiskers, boolean evil, int length) {
+		this.id = id;
+		this.hasWhiskers = hasWhiskers;
+		this.name = name;
+		this.evil = evil;
+		this.length = length;
+	}
 
 	boolean hasWhiskers;
 	String name;
