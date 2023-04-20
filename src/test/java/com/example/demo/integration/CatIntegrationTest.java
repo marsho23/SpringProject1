@@ -39,7 +39,7 @@ public class CatIntegrationTest {
 				.contentType(MediaType.APPLICATION_JSON);
 		
 		ResultMatcher checkStatus = MockMvcResultMatchers.status().isCreated();
-		Cat created = new Cat(1L,"Chairman Meow",true,true,12);
+		Cat created = new Cat(2L,"Chairman Meow",true,true,12);
 		String createdAsJson = this.mapper.writeValueAsString(created);
 		ResultMatcher checkBody = content().json(createdAsJson);
 		
@@ -47,5 +47,11 @@ public class CatIntegrationTest {
 		.andExpect(checkStatus)
 		.andExpect(checkBody);
 	}
+	
+//	@Test
+//	void testUpdate() throws Exception{
+//		Cat c= new Cat ("Chairman Meow",true,true,12);
+//		Cat created = 
+//	}
 	
 }
