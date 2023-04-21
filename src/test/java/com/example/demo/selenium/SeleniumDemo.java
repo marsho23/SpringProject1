@@ -38,6 +38,17 @@ public class SeleniumDemo {
 		Assertions.assertEquals("The Turtle Dove Pilgrimage", result.getText());
 	}
 
+	@Test
+	void penguinTest() {
+		this.driver.get("https://www.penguin.co.uk/");
+
+		WebElement search = this.driver.findElement(By.cssSelector("#header-search-input"));
+		search.sendKeys("moonlight");
+		search.sendKeys(Keys.ENTER);
+		WebElement result = this.driver.findElement(By.cssSelector("#__next > div > a"));
+		Assertions.assertEquals("", result.getText());
+	}
+
 	@AfterEach
 	void tearDown() {
 		this.driver.close();
